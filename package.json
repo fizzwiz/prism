@@ -1,0 +1,59 @@
+{
+  "name": "@fizzwiz/prism",
+  "version": "0.0.0-dev.0",
+  "description": "Patterns in problem solving.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fizzwiz/prism.git"
+  },
+  "keywords": [
+    "abstraction",
+    "problem-solving"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": "Roberto Venditti <err3vi@gmail.com>",
+  "files": [
+    "README.md",
+    "dist/prism.bundle.js",
+    "src/main/"
+  ],
+  "type": "module",
+  "main": "index.js",  
+  "exports": {
+      ".": "./src/main/index.js"
+  },
+
+  "scripts": {
+    "test": "mocha --recursive ./src/test",
+    "test:watch": "mocha --watch ./src/test",
+    "doc": "jsdoc -r -c ./jsdoc.json",
+    "build": "webpack --mode production"
+  },
+  "bugs": {
+    "url": "https://github.com/fizzwiz/prism/issues"
+  },
+  "homepage": "https://github.com/fizzwiz/prism#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "assert": "2.0.0",
+    "babel-loader": "^9.1.2",
+    "mocha": "^10.2.0",
+    "path": "^0.12.7",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@fizzwiz/fluent": "github:fizzwiz/fluent",
+    "@fizzwiz/sorted": "github:fizzwiz/sorted"
+  }
+
+}
