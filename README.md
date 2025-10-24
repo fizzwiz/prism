@@ -1,4 +1,4 @@
-# @fizzwiz/prism
+# 🌈 @fizzwiz/prism
 
 **Solve complex problems with reusable, foundational abstractions — locally or at scale.**
 

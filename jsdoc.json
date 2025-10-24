@@ -5,7 +5,7 @@
     
     "opts": {
         "destination": "./docs/",
-        "readme": "./readme.md"
+        "readme": "./README.md"
     },
 
     "templates": {
