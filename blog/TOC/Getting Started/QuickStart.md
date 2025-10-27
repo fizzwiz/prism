@@ -1,89 +1,89 @@
-# 🚀 Quick Start Guide: `@fizzwiz/sorted`
+# ⚡ QuickStart with `@fizzwiz/prism`
 
-Welcome to `@fizzwiz/sorted` — a modern library of sorted collections for JavaScript.  
-This guide will help you get started in just a few minutes.
+> **“Get prism running in minutes.”**
 
----
-
-## 📦 Installation
-
-Install with **npm**:
-
-```bash
-npm install @fizzwiz/sorted
-```
-
-Or with **yarn**:
-
-```bash
-yarn add @fizzwiz/sorted
-```
+This QuickStart guide helps you dive straight into using the `@fizzwiz/prism` library with minimal setup, so you can start experimenting with patterns and algorithms right away.
 
 ---
 
-## 🔁 Basic Sorting
+## 1. Installation
 
-The `ArrayQueue` class keeps elements sorted by insertion order — behaving like a **FIFO** or **LIFO** queue, depending on configuration:
+Install via npm:
 
-```js
+```bash
+npm install @fizzwiz/prism
+```
+
+Or via yarn:
+
+```bash
+yarn add @fizzwiz/prism
+```
+
+---
+
+## 2. Basic Usage
+
+Import a core pattern class, e.g., `Run`:
+
+```javascript
+import { Run } from '@fizzwiz/prism';
+
+class MyComputation extends Run {
+    run() {
+        return 'Hello, Patterns!';
+    }
+}
+
+const result = new MyComputation().run();
+console.log(result); // Hello, Patterns!
+```
+
+---
+
+## 3. Using `Search`
+
+```javascript
+import { Search } from '@fizzwiz/prism';
 import { ArrayQueue } from '@fizzwiz/sorted';
 
-// LIFO (Last In, First Out)
-const lifo = new ArrayQueue(false).let(1).let(2).let(3);
+const search = new Search()
+    .from(1, 2, 3)
+    .through(n => [n + 1, n + 2])
+    .via(new ArrayQueue(), 10);
 
-const last = lifo.peek(); // → 3
+for (const candidate of search) {
+    console.log(candidate);
+}
 ```
 
+This will lazily explore your candidate space.
+
 ---
 
-## 🧠 Advanced Equivalence
+## 4. Using `AsyncSearch`
 
-Use custom equivalence logic via **representation functions**. For example, group strings by their length:
+```javascript
+import { AsyncSearch } from '@fizzwiz/prism';
 
-```js
-import { TrueSet, ORDER } from '@fizzwiz/sorted';
+const asyncSearch = new AsyncSearch()
+    .from(1, 2, 3)
+    .through(async n => [n + 1, n + 2])
+    .via(new ArrayQueue(), 10)
+    .inParallel(4);
 
-const set = new TrueSet(
-  word => word.length,       // representation function
-  ORDER.ASCENDING, 
-  ORDER.SINGULAR             // enforce uniqueness by representation
-);
-
-set.add("what");
-set.add("that"); // → false (same length as "what")
+for await (const candidate of asyncSearch) {
+    console.log(candidate);
+}
 ```
 
----
-
-## 🧪 Composable Logic
-
-`Collection` extends the `Each` concept (see [@fizzwiz/fluent Blog](https://fluent-js.blogspot.com)) — allowing fluent, chainable transformations:
-
-```js
-const lifo = new ArrayQueue(false).let(1).let(2).let(3);
-
-const odds = lifo.which(i => i % 2 === 1);     // → [1, 3]
-const sum = odds.what((a, b) => a + b);        // → 4
-```
+This demonstrates asynchronous exploration with parallelism.
 
 ---
 
-## 📚 Explore More
+## 5. Next Steps
 
-### ✨ [Intro to the Library](https://sorted-js.blogspot.com/p/Intro.html)
-A conceptual overview of the design philosophy and patterns behind `@fizzwiz/sorted`.
+* Explore `Search` for combinatorial selection problems.
+* Explore `AsyncSearch` for asynchronous searches distributed among multiple machines.
+* Check the blog for detailed API pages and pattern explanations.
 
-### 📄 [API Reference](https://fizzwiz.github.io/sorted)
-Browse the full, auto-generated documentation.
-
-### 🧾 [GitHub Repository](https://github.com/fizzwiz/sorted)
-View the source, report issues, or contribute to the project.
-
----
-
-## 💬 Need Help?
-
-Questions? Thoughts? Drop a comment on the blog or open a discussion on GitHub.
-
-> “Make your code align with your thoughts.”  
-> — `@fizzwiz ✨`

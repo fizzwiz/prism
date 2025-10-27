@@ -1,4 +1,4 @@
-# 🌈 @fizzwiz/prism
+# 🔺 @fizzwiz/prism
 
 **Solve complex problems with reusable, foundational abstractions — locally or at scale.**
 
@@ -31,7 +31,7 @@ import { Run, Search, AsyncSearch } from '@fizzwiz/prism';
 ### Browser (via CDN)
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/fizzwiz/prism@v0.0.0-dev.1/dist/prism.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fizzwiz/prism/dist/prism.bundle.js"></script>
 <script>
   const search = new prism.Search();
 </script>

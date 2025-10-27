@@ -10,7 +10,7 @@ describe("Search", function() {
     const space = n => [n + 1, n + 2];
 
     const search = new Search()
-      .from([1])
+      .from(1)
       .through(space)
       .via(new ArrayQueue()); // max 10 in queue
 
@@ -20,7 +20,7 @@ describe("Search", function() {
 
   it("should allow fluent builder chaining", function() {
     const search = new Search()
-      .from([0])
+      .from(0)
       .through(n => [n + 1])
       .via(new ArrayQueue(), 5);
 
@@ -43,7 +43,7 @@ describe("Search", function() {
     assert.strictEqual(count, 0);
 
     // Define start and space fluently
-    search.from([1, 2]).through(n => n < 3 ? [n + 1] : undefined);
+    search.from(1, 2).through(n => n < 3 ? [n + 1] : undefined);
     const result2 = [];
     count = 0;
     for (const candidate of search) {
@@ -56,7 +56,7 @@ describe("Search", function() {
 
   it("should respect max queue size", function() {
     const search = new Search()
-      .from([1])
+      .from(1)
       .through(n => [n + 1, n + 2])
       .via(new ArrayQueue(), 3); // max 3 in queue
 

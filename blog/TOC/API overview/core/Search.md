@@ -1,4 +1,4 @@
-# 🧭 Search Class — `@fizzwiz/pattern/core`
+# 🧘‍♂️ Search Class
 
 The `Search` class is a symbolic and non-executable abstraction in the `@fizzwiz/pattern` library.  
 It represents a **lazy, structured exploration** of a space of candidate solutions.
@@ -98,12 +98,7 @@ const
 ```
 
 See:
-- [@fizzwiz/fluent library blog](https://fluent.blog.fizzwiz.cloud) 
 - [Search-And-Select Pattern](https://blog.fizzwiz.cloud/2025/06/search-and-select-pattern.html)  
 - [Early vs Late Restriction](https://fluent.blog.fizzwiz.cloud/2025/05/early-vs-late-restriction.html)
 
----
-
-> *"Define the path, and let ideas emerge from exploration."*  
-> — `@fizzwiz ✨`
 

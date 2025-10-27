@@ -45,7 +45,7 @@ export class Search extends Each {
   // ─── Fluent Builder Methods ──────────────────────────────────
 
   /** Define starting candidates. */
-  from(start) { this.start = start; return this; }
+  from(...starts) { this.start = starts; return this; }
 
   /** Define expansion logic (search space). */
   through(space) { this.space = space; return this; }
@@ -82,7 +82,7 @@ export class Search extends Each {
       // Expand search space
       let more;
       try {
-        more = typeof space === "function" ? space(item) : undefined;
+        more = space(item);
       } catch (err) {
         throw new Error(`Search expansion failed at item: ${item}\n${err}`);
       }

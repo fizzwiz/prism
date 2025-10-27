@@ -1,5 +1,3 @@
-import { What } from "@fizzwiz/fluent";
-
 /**
  * Abstract base class for all locally executable processes.
  *
@@ -11,12 +9,9 @@ import { What } from "@fizzwiz/fluent";
  * - Return a result directly (e.g., a value, object, or structure), or
  * - Mutate internal state and return `this` for fluent chaining.
  *
- * By extending `What`, `Run` inherits the `what()` interface,
- * which defaults to invoking `run()`.
- *
  * @abstract
  */
-export class Run extends What {
+export class Run {
     /**
      * Executes the computation defined by the subclass.
      * This method must be overridden in all concrete implementations.
@@ -29,19 +24,6 @@ export class Run extends What {
      */
     run() {
         throw new Error("Abstract method 'run()' must be implemented by subclasses.");
-    }
-
-    /**
-     * Invokes the `run()` method. This provides a standard entry point
-     * when treating the process abstractly as a `What`.
-     *
-     * Subclasses may override to customize the entry point behavior
-     * (e.g., pre/post-processing around `run()`).
-     *
-     * @returns {Run|any} The result of execution.
-     */
-    what() {
-        return this.run();
     }
 
 }

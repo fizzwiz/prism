@@ -7,7 +7,7 @@ describe("AsyncSearch", () => {
 
   it("should yield candidates in BFS order (flattened)", async () => {
     const search = new AsyncSearch()
-      .from([1])
+      .from(1)
       .through(async n => (n < 4 ? [n + 1, n + 2] : []))
       .via(new ArrayQueue(), 20)
       .inParallel(2);
@@ -24,7 +24,7 @@ describe("AsyncSearch", () => {
 
   it("should yield batches of candidates in batchIterator", async () => {
     const search = new AsyncSearch()
-      .from([0])
+      .from(0)
       .through(async n => (n < 3 ? [n + 1] : []))
       .via(new ArrayQueue(), 10)
       .inParallel(2);
@@ -44,7 +44,7 @@ describe("AsyncSearch", () => {
   it("should allow fluent builder chaining", async () => {
     const results = [];
     const search = new AsyncSearch()
-      .from([1])
+      .from(1)
       .through(async n => (n < 5 ? [n + 1] : []))
       .via(new ArrayQueue(), 10)
       .inParallel(3);
@@ -60,7 +60,7 @@ describe("AsyncSearch", () => {
   it("should respect max queue size", async () => {
     const max = 3;
     const search = new AsyncSearch()
-      .from([1])
+      .from(1)
       .through(async n => [n + 1, n + 2])
       .via(new ArrayQueue(), max) // enforce queue cap
       .inParallel(2);

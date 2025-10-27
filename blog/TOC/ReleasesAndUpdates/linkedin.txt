@@ -1,0 +1,15 @@
+🔺 @fizzwiz/prism v0.0.0-dev.1 — Search & Run
+
+The first prerelease of @fizzwiz/prism is here! 🎉
+A library designed to capture the wonder of computation, starting with two core abstractions:
+
+⚡ Run – Define focused, executable algorithms.
+🧘 Search – Explore vast solution spaces symbolically and fluently.
+
+This release lays the foundation for a new way to express algorithmic patterns — elegant, formal, and intuitive.
+
+🧠 Learn more: https://fizzwiz-prism-js.blogspot.com
+📦 Grab it on npm: https://www.npmjs.com/package/@fizzwiz/prism
+
+— @fizzwiz ✨
+

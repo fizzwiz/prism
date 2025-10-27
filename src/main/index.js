@@ -2,10 +2,9 @@
 import { Run } from './core/Run.js';
 import { Search } from './core/Search.js';
 import { AsyncSearch } from './core/AsyncSearch.js';
-import { PopRace } from './run/PopRace.js';
-import { ConvergingRun } from './run/ConvergingRun.js';
+// import { PopRace } from './run/PopRace.js';
 
-export { Run, Search, AsyncSearch, PopRace, ConvergingRun };
+export { Run, Search, AsyncSearch };
 
 // ─── Core Module ─────────────────────────────────────────────
 /**
@@ -21,8 +20,6 @@ export { Run, Search, AsyncSearch, PopRace, ConvergingRun };
  * @description
  * Abstractions of locally executable patterns.
  * Includes convergence-based and population-based runners:
- * - {@link ConvergingRun} — iterative algorithms that converge toward a solution.
- * - {@link PopRace} — generalized population-based selection framework.
  */
 
 // ─── Search Submodule ────────────────────────────────────────

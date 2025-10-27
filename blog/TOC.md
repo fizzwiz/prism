@@ -7,16 +7,16 @@ Whether you're just starting out or exploring advanced abstractions, this guide 
 
 ## 🚀 Getting Started
 
-- [Welcome](https://prism-js.blogspot.com/p/welcome.html)  
+- [Welcome](https://fizzwiz-prism-js.blogspot.com/p/welcome.html)  
   Overview, audience, and organizational principles behind the library.
 
-- [Quick Start](https://prism-js.blogspot.com/p/quick-start.html)  
+- [Quick Start](https://fizzwiz-prism-js.blogspot.com/p/quick-start.html)  
   How to install and write your first meaningful code with `@fizzwiz/prism`.
 
-- [Introduction](https://prism-js.blogspot.com/p/intro.html)  
+- [Introduction](https://fizzwiz-prism-js.blogspot.com/p/intro.html)  
   The motivation, philosophy, and design goals shaping the library’s architecture.
 
-- [Contribute & Feedback](https://prism-js.blogspot.com/p/contribute-feedback.html)  
+- [Contribute & Feedback](https://fizzwiz-prism-js.blogspot.com/p/contribute-feedback.html)  
   Ways to report issues, suggest improvements, or contribute to the project.
 
 ---
@@ -25,10 +25,10 @@ Whether you're just starting out or exploring advanced abstractions, this guide 
 
 ### 🧬 Core Package: Building Blocks for Abstraction
 
-- ⚡ [Run Interface](https://prism-js.blogspot.com/p/run-interface.html)  
+- ⚡ [Run Interface](https://fizzwiz-prism-js.blogspot.com/p/run-class.html)  
   Encapsulate focused, executable logic to solve specific problems.
 
-- 🧠 [Search Class](https://prism-js.blogspot.com/p/search-class.html)  
+- 🧠 [Search Class](https://fizzwiz-prism-js.blogspot.com/p/search-class.html)  
   Define a structured exploration of candidate solutions guiding refinement.
 
 ---
@@ -47,7 +47,7 @@ Whether you're just starting out or exploring advanced abstractions, this guide 
 
 ## 📣 Releases & Updates
 
-- [📦 v0.0.0-dev.1 — The First Brick](https://prism.blog.fizzwiz.cloud/2025/06/v000-dev1-first-brick.html)  
+- [📦 v0.0.0-dev.1 — Search & Run](https://fizzwiz-prism-js.blogspot.com/2025/10/v000-dev1-search-and-run.html)  
   Initial pre-release featuring core abstractions and foundational patterns.
 
 ---

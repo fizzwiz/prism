@@ -41,12 +41,11 @@ export class AsyncSearch extends AsyncEach {
   /** Maximum queue size (selects the best max candidates). */
   max;
 
-    /**
-     * Number of concurrent expansions per batch, or a function returning
-     * a number (possibly async) to determine concurrency at runtime.
-     *
-     * @type {(number|function(): (number|Promise<number>))}
-     */
+  /**
+   * Number of concurrent expansions per batch
+   *
+   * @type {number}
+   */
   cores;
 
   constructor(start = undefined, space = undefined, queue = new ArrayQueue(), max = 256, cores = 16) {
@@ -60,7 +59,7 @@ export class AsyncSearch extends AsyncEach {
 
   // ─── Fluent Builder Methods ──────────────────────────────────
 
-  from(start) { this.start = start; return this; }
+  from(...starts) { this.start = starts; return this; }
   through(space) { this.space = space; return this; }
   via(queue, max = undefined) {
     this.queue = queue;
@@ -68,17 +67,6 @@ export class AsyncSearch extends AsyncEach {
     return this;
   }
   inParallel(cores) { this.cores = cores; return this; }
-
-  // ─── Helper Methods ─────────────────────────────────────────
-
-  /**
-   * Resolve the number of concurrent expansions for this batch.
-   * Ensures at least 1 candidate per batch.
-   */
-  async resolveCores() {
-    let batchLength = typeof this.cores === 'number' ? this.cores : await this.cores();
-    return Math.max(1, batchLength);
-  }
 
   // ─── Async Iterator Logic ────────────────────────────────────
 
@@ -95,12 +83,12 @@ export class AsyncSearch extends AsyncEach {
     const space = this.space;
     const starts = this.start;
     const max = this.max;
+    const batchLength = this.cores;
 
     queue.clear();
     queue.addAll(await AsyncEach.as(starts).toArray());
 
     while (queue.n() > 0) {
-      const batchLength = await this.resolveCores();
 
       // Poll the first `batchLength` items as the current batch
       const batch = queue.select(queue.n() - batchLength, false);

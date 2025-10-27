@@ -1,5 +1,5 @@
 import { SortedArray } from "@fizzwiz/sorted";
-import { Run } from "../core/Run.js";
+import { Run } from "../main/core/Run.js";
 import { Each, What, Path } from "@fizzwiz/fluent";
 
 /**
