@@ -48,8 +48,3 @@ The global `prism` object exposes all classes.
 
 - 📘 **Concepts & Guides**: [fizzwiz-prism-js.blogspot.com](https://fizzwiz-prism-js.blogspot.com)  
   Tutorials, walkthroughs, and philosophy behind the abstractions.
-
----
-
-**Think big!**  
-— `@fizzwiz ✨`
