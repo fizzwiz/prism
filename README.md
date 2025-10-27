@@ -12,7 +12,7 @@
 - **Search** — defines a solution as the result of exploring a potentially infinite space of candidates  
 - **AsyncSearch** — a search spanning a space distributed across multiple machines  
 
-> Learn more at [prism-js.blogspot.com](https://prism-js.blogspot.com) — explore the philosophy, concepts, and patterns behind the design.
+> Learn more at [fizzwiz-prism-js.blogspot.com](https://fizzwiz-prism-js.blogspot.com) — explore the philosophy, concepts, and patterns behind the design.
 
 ---
 
@@ -46,7 +46,7 @@ The global `prism` object exposes all classes.
 - 📗 **API Reference**: [fizzwiz.github.io/prism](https://fizzwiz.github.io/prism)  
   Detailed class methods, properties, and usage examples.
 
-- 📘 **Concepts & Guides**: [prism-js.blogspot.com](https://prism-js.blogspot.com)  
+- 📘 **Concepts & Guides**: [fizzwiz-prism-js.blogspot.com](https://fizzwiz-prism-js.blogspot.com)  
   Tutorials, walkthroughs, and philosophy behind the abstractions.
 
 ---
