@@ -1,39 +1,44 @@
 # 💬 Contribute & Feedback
 
-Whether you're a JavaScript enthusiast, a fan of algorithmic patterns, or applying `@fizzwiz/prism` in real-world domains — your input is welcome and appreciated!
+Whether you're exploring **semantic helpers for JSON**, refining **data navigation patterns**, or integrating `@fizzwiz/vanilla` into real projects — your ideas and experiences are incredibly valuable!
 
 ---
 
 ## 🤝 How You Can Contribute
 
-* **Share feedback** – Found something confusing? Something exciting? Let us know!
-* **Suggest improvements** – Whether it's API design, performance tweaks, or documentation clarity.
-* **Submit use cases** – Real-world examples help the community understand and apply the library.
-* **Report bugs** – Open an issue on [GitHub](https://github.com/fizzwiz/prism/issues) — every detail helps.
+* **Share feedback** – Found something confusing, elegant, or missing? Tell us!
+* **Suggest improvements** – From API design to ergonomics, naming, or docs clarity — every suggestion helps.
+* **Submit examples** – Real-world usage patterns help others see how `@fizzwiz/vanilla` fits into practical workflows.
+* **Report bugs** – Open an issue on GitHub with a clear reproduction; small details make big differences.
+
+👉 **GitHub Issues:** [https://github.com/fizzwiz/vanilla/issues](https://github.com/fizzwiz/vanilla/issues)
 
 ---
 
 ## 🙋 Why Your Feedback Matters
 
-This library is actively evolving — shaped by the insights and needs of its users.
-Even small suggestions can have a big impact on improving its usability and expressiveness.
+`@fizzwiz/vanilla` is in **active evolution** — shaped directly by developer insights.
+Even small notes can refine how the library feels, reads, and performs across projects.
+Your feedback helps ensure it remains **simple, semantic, and safe** to use.
 
 ---
 
 ## 💡 Have an Idea?
 
-See a missing feature? Want to extend a pattern?
-Start a discussion or reach out — ideas that align with the project’s spirit are always welcome.
+Is there a helper you wish existed?
+A missing pattern for working with plain objects?
+Start a discussion or open a proposal — ideas that align with `@fizzwiz`’s spirit of **clarity and composability** are always welcome.
 
 ---
 
 ## ❤️ Sponsor the Project
 
-If you find value in this work and want to support its continued development, consider [sponsoring the project](https://github.com/sponsors/fizzwiz).
+If this library brings value to your work, consider supporting its development.
+Your sponsorship helps sustain thoughtful open-source craftsmanship and future improvements.
+
+💖 **GitHub Sponsors:** [https://github.com/sponsors/fizzwiz](https://github.com/sponsors/fizzwiz)
 
 ---
 
-<br>
-
-🙏 **Thanks for being part of the journey!**    
-<code>— @fizzwiz ✨</code>
+🙏 Thanks for being part of the journey!  
+— `@fizzwiz` ✨

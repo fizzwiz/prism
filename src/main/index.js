@@ -1,4 +1,3 @@
-// ─── Core Exports ────────────────────────────────────────────
 import { Run } from './core/Run.js';
 import { Search } from './core/Search.js';
 import { AsyncSearch } from './core/AsyncSearch.js';
@@ -14,15 +13,15 @@ export { Run, Search, AsyncSearch };
  * Includes the foundational classes for defining algorithms and problem-solving patterns.
  */
 
-// ─── Run Submodule ───────────────────────────────────────────
+// ─── Run module ───────────────────────────────────────────
 /**
  * @module run
  * @description
  * Abstractions of locally executable patterns.
- * Includes convergence-based and population-based runners:
+ * Currently empty.
  */
 
-// ─── Search Submodule ────────────────────────────────────────
+// ─── Search module ────────────────────────────────────────
 /**
  * @module search
  * @description

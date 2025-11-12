@@ -19,7 +19,7 @@ In this pattern:
 
 * A **search space** is modeled by the `What` class.
 * A **search** is expressed via the `Each` class, providing lazy iteration.
-  (Both come from the companion library [`@fizzwiz/fluent`](https://fluent-js.blogspot.com))
+  (Both come from the companion library [`@fizzwiz/fluent`](https://fluent.blog.fizzwiz.cloud))
 * A **priority queue** manages candidate ordering, ensuring efficient selection.
 
 Explore this pattern further in:

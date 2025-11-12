@@ -1,6 +1,6 @@
 {
   "name": "@fizzwiz/prism",
-  "version": "0.0.0-dev.1",
+  "version": "0.0.0-dev.3",
   "description": "Patterns in problem solving.",
   "repository": {
     "type": "git",
@@ -21,11 +21,9 @@
     "src/main/"
   ],
   "type": "module",
-  "main": "index.js",  
   "exports": {
-      ".": "./src/main/index.js"
+    ".": "./src/main/index.js"
   },
-
   "scripts": {
     "test": "mocha --recursive ./src/test",
     "test:watch": "mocha --watch ./src/test",
@@ -44,6 +42,7 @@
     "@babel/cli": "^7.22.5",
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
+    "@fizzwiz/sorted": "github:fizzwiz/sorted",
     "assert": "2.0.0",
     "babel-loader": "^9.1.2",
     "mocha": "^10.2.0",
@@ -52,8 +51,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@fizzwiz/fluent": "github:fizzwiz/fluent",
-    "@fizzwiz/sorted": "github:fizzwiz/sorted"
+    "@fizzwiz/fluent": "^0.0.0-dev.12"
   }
-
 }

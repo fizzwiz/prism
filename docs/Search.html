@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Search<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Search<span class="signature">(start<span class="signature-attributes">opt</span>, space<span class="signature-attributes">opt</span>, queue<span class="signature-attributes">opt</span>, max<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
             <div class="class-description"><p>Base class for defining declarative, lazy algorithms.</p>
 <p>A <code>Search</code> defines a non-executable local process that explores
@@ -36,9 +36,9 @@ candidate solutions via lazy iteration. Each candidate is
 produced on-demand through a queue-driven exploration strategy.</p>
 <p>Features:</p>
 <ul>
-<li>Define initial candidates via start</li>
-<li>Describe expansion of candidates via space</li>
-<li>Control exploration order with queue</li>
+<li>Define initial candidates via from</li>
+<li>Describe expansion of candidates via through</li>
+<li>Control exploration order with via</li>
 <li>Limit branching using max</li>
 </ul>
 <p>Transformation and termination are fluent, leveraging methods from Each.</p></div>
@@ -56,19 +56,183 @@ produced on-demand through a queue-driven exploration strategy.</p>
     
 
     
-    <h4 class="name" id="Search"><span class="type-signature"></span>new Search<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Search"><span class="type-signature"></span>new Search<span class="signature">(start<span class="signature-attributes">opt</span>, space<span class="signature-attributes">opt</span>, queue<span class="signature-attributes">opt</span>, max<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
 
 
 
+<div class="description">
+    <p>Create a new <code>Search</code> instance.</p>
+</div>
 
 
 
 
 
 
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterable</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Initial candidates.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>space</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Expansion function.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>queue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Queue instance controlling iteration order.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Maximum queue size.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -156,7 +320,7 @@ produced on-demand through a queue-driven exploration strategy.</p>
 
         
             
-<h4 class="name" id="max"><span class="type-signature"></span>max<span class="type-signature"></span></h4>
+<h4 class="name" id="max"><span class="type-signature"></span>max<span class="type-signature"> :number|undefined</span></h4>
 
 
 
@@ -167,6 +331,19 @@ produced on-demand through a queue-driven exploration strategy.</p>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
 
 
 
@@ -213,16 +390,27 @@ produced on-demand through a queue-driven exploration strategy.</p>
 
         
             
-<h4 class="name" id="queue"><span class="type-signature"></span>queue<span class="type-signature"></span></h4>
+<h4 class="name" id="queue"><span class="type-signature"></span>queue<span class="type-signature"> :Object</span></h4>
 
 
 
 
 <div class="description">
-    <p>Queue controlling search order (BFS, DFS, priority, etc.).</p>
+    <p>Queue controlling search order (BFS, DFS, priority, etc.).
+Must implement <code>.addAll()</code>, <code>.poll()</code>, <code>.clear()</code>, <code>.n()</code>, and optionally <code>.select()</code>.</p>
 </div>
 
 
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -270,17 +458,30 @@ produced on-demand through a queue-driven exploration strategy.</p>
 
         
             
-<h4 class="name" id="space"><span class="type-signature"></span>space<span class="type-signature"></span></h4>
+<h4 class="name" id="space"><span class="type-signature"></span>space<span class="type-signature"> :function|undefined</span></h4>
 
 
 
 
 <div class="description">
     <p>Expansion function describing the search space.
-Must be (candidate:any) =&gt; Iterable|undefined</p>
+Should return an iterable of new candidates or <code>undefined</code> to stop expansion.</p>
 </div>
 
 
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">function</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -328,7 +529,7 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 
         
             
-<h4 class="name" id="start"><span class="type-signature"></span>start<span class="type-signature"></span></h4>
+<h4 class="name" id="start"><span class="type-signature"></span>start<span class="type-signature"> :Iterable|undefined</span></h4>
 
 
 
@@ -338,6 +539,19 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 </div>
 
 
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Iterable</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -395,7 +609,7 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
     
 
     
-    <h4 class="name" id="from"><span class="type-signature"></span>from<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="from"><span class="type-signature"></span>from<span class="signature">(&hellip;starts)</span><span class="type-signature"> &rarr; {<a href="Search.html">Search</a>}</span></h4>
     
 
     
@@ -403,173 +617,7 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 
 
 <div class="description">
-    <p>Define starting candidates.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="through"><span class="type-signature"></span>through<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Define expansion logic (search space).</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="via"><span class="type-signature"></span>via<span class="signature">(queue, max<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Define the queue strategy and (optionally) a new max size.</p>
+    <p>Define the starting candidates for the search.</p>
 </div>
 
 
@@ -607,13 +655,13 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 
         <tr>
             
-                <td class="name"><code>queue</code></td>
+                <td class="name"><code>starts</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ArrayQueue</span>
+<span class="param-type">*</span>
 
 
             
@@ -626,45 +674,14 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
                 
 
                 
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Queue implementation</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>max</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
+                    &lt;repeatable><br>
                 
                 </td>
             
 
             
 
-            <td class="description last"><p>Optional new maximum</p></td>
+            <td class="description last"><p>One or more initial candidates.</p></td>
         </tr>
 
     
@@ -725,6 +742,379 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The current search instance (for chaining).</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Search.html">Search</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="through"><span class="type-signature"></span>through<span class="signature">(space)</span><span class="type-signature"> &rarr; {<a href="Search.html">Search</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Define the expansion logic (search space).</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>space</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Function describing the search space.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The current search instance (for chaining).</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Search.html">Search</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="via"><span class="type-signature"></span>via<span class="signature">(queue, max<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Search.html">Search</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Define the queue strategy and optionally set a new maximum size.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>queue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Queue implementation controlling exploration order.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional new maximum queue size.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The current search instance (for chaining).</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Search.html">Search</a></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -752,7 +1142,7 @@ Must be (candidate:any) =&gt; Iterable|undefined</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Oct 27 2025 20:18:01 GMT+0100 (Ora standard dell’Europa centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Nov 12 2025 20:23:23 GMT+0100 (Ora standard dell’Europa centrale)
 </footer>
 
 <script> prettyPrint(); </script>

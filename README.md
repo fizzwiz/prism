@@ -12,7 +12,7 @@
 - **Search** — defines a solution as the result of exploring a potentially infinite space of candidates  
 - **AsyncSearch** — a search spanning a space distributed across multiple machines  
 
-> Learn more at [fizzwiz-prism-js.blogspot.com](https://fizzwiz-prism-js.blogspot.com) — explore the philosophy, concepts, and patterns behind the design.
+> Learn more at [prism.blog.fizzwiz.cloud](https://prism.blog.fizzwiz.cloud) — explore the philosophy, concepts, and patterns behind the design.
 
 ---
 

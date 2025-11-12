@@ -1,5 +1,4 @@
 import { Each } from "@fizzwiz/fluent";
-import { ArrayQueue } from "@fizzwiz/sorted";
 
 /**
  * Base class for defining declarative, lazy algorithms.
@@ -9,32 +8,50 @@ import { ArrayQueue } from "@fizzwiz/sorted";
  * produced on-demand through a queue-driven exploration strategy.
  *
  * Features:
- * - Define initial candidates via {@link start}
- * - Describe expansion of candidates via {@link space}
- * - Control exploration order with {@link queue}
+ * - Define initial candidates via {@link from}
+ * - Describe expansion of candidates via {@link through}
+ * - Control exploration order with {@link via}
  * - Limit branching using {@link max}
  *
  * Transformation and termination are fluent, leveraging methods from {@link Each}.
- *
  */
 export class Search extends Each {
 
-  /** Initial candidates to seed the search. */
+  /** 
+   * Initial candidates to seed the search. 
+   * @type {Iterable|undefined}
+   */
   start;
 
   /**
    * Expansion function describing the search space.
-   * Must be (candidate:any) => Iterable|undefined
+   * Should return an iterable of new candidates or `undefined` to stop expansion.
+   * @type {function(*): (Iterable|undefined)|undefined}
    */
   space;
 
-  /** Queue controlling search order (BFS, DFS, priority, etc.). */
+  /** 
+   * Queue controlling search order (BFS, DFS, priority, etc.).
+   * Must implement `.addAll()`, `.poll()`, `.clear()`, `.n()`, and optionally `.select()`.
+   * @type {Object}
+   */
   queue;
 
-  /** Maximum queue size (limits branching). */
+  /** 
+   * Maximum queue size (limits branching). 
+   * @type {number|undefined}
+   */
   max;
 
-  constructor(start = undefined, space = undefined, queue = new ArrayQueue(), max = 256) {
+  /**
+   * Create a new `Search` instance.
+   *
+   * @param {Iterable} [start] Initial candidates.
+   * @param {function(*): (Iterable|undefined)} [space] Expansion function.
+   * @param {Object} [queue] Queue instance controlling iteration order.
+   * @param {number} [max] Maximum queue size.
+   */
+  constructor(start = undefined, space = undefined, queue = undefined, max = undefined) {
     super();
     this.start = start;
     this.space = space;
@@ -44,16 +61,34 @@ export class Search extends Each {
 
   // ─── Fluent Builder Methods ──────────────────────────────────
 
-  /** Define starting candidates. */
-  from(...starts) { this.start = starts; return this; }
-
-  /** Define expansion logic (search space). */
-  through(space) { this.space = space; return this; }
+  /**
+   * Define the starting candidates for the search.
+   *
+   * @param {...*} starts One or more initial candidates.
+   * @returns {Search} The current search instance (for chaining).
+   */
+  from(...starts) { 
+    this.start = starts; 
+    return this; 
+  }
 
   /**
-   * Define the queue strategy and (optionally) a new max size.
-   * @param {ArrayQueue} queue Queue implementation
-   * @param {number} [max] Optional new maximum
+   * Define the expansion logic (search space).
+   *
+   * @param {function(*): (Iterable|undefined)} space Function describing the search space.
+   * @returns {Search} The current search instance (for chaining).
+   */
+  through(space) { 
+    this.space = space; 
+    return this; 
+  }
+
+  /**
+   * Define the queue strategy and optionally set a new maximum size.
+   *
+   * @param {Object} queue Queue implementation controlling exploration order.
+   * @param {number} [max] Optional new maximum queue size.
+   * @returns {Search} The current search instance (for chaining).
    */
   via(queue, max = undefined) {
     this.queue = queue;
@@ -64,8 +99,11 @@ export class Search extends Each {
   // ─── Iterator Logic ─────────────────────────────────────────
 
   /**
-   * Lazily iterate over candidates, expanding according to
-   * the queue and space function.
+   * Lazily iterate over candidate items, expanding them according
+   * to the queue strategy and space function.
+   *
+   * @yields {*} The next candidate in the search process.
+   * @throws {Error} If the expansion function fails or returns invalid data.
    */
   *[Symbol.iterator]() {
     const queue = this.queue;

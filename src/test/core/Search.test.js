@@ -12,7 +12,7 @@ describe("Search", function() {
     const search = new Search()
       .from(1)
       .through(space)
-      .via(new ArrayQueue()); // max 10 in queue
+      .via(new ArrayQueue()); 
 
     // Just check the first 10 candidates are as expected
     assert.deepStrictEqual(search.when(5, false).toArray(), [1, 2, 3, 3, 4]);
@@ -35,7 +35,7 @@ describe("Search", function() {
   });
 
   it("should handle undefined start or space", function() {
-    const search = new Search();
+    const search = new Search().via(new ArrayQueue());
 
     // Queue is empty; iteration yields nothing
     let count = 0;
