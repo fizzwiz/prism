@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Run</title>
+    <title>JSDoc: Class: RaceEvaluator</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Run</h1>
+    <h1 class="page-title">Class: RaceEvaluator</h1>
 
     
 
@@ -28,25 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Run<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>RaceEvaluator<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Abstract base class for all locally executable processes.</p>
-<p>A <code>Run</code> instance represents a focused executable unit of logic.
-Subclasses must implement the <code>run()</code> method, which performs the
-main computation.</p>
-<p>Execution may:</p>
-<ul>
-<li>Return a computed value</li>
-<li>Return <code>this</code> (for fluent chaining)</li>
-<li>Emit lifecycle or custom events</li>
-</ul>
-<p>Events typically used:</p>
-<ul>
-<li>&quot;start&quot;      → invoked just before computation</li>
-<li>&quot;step&quot;       → invoked periodically during execution</li>
-<li>&quot;end&quot;        → invoked after successful completion</li>
-</ul>
-<p>This base class enforces the presence of <code>run()</code> in subclasses.</p></div>
+            <div class="class-description"><p>The Evaluator provides the rationale for evaluating some candidate solution in a give context.</p></div>
         
     
 </header>
@@ -61,17 +45,12 @@ main computation.</p>
     
 
     
-    <h4 class="name" id="Run"><span class="type-signature"></span>new Run<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RaceEvaluator"><span class="type-signature"></span>new RaceEvaluator<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
-
-<div class="description">
-    <p>Creates a new Run instance.
-Subclasses may define their own parameters and internal state.</p>
-</div>
 
 
 
@@ -147,13 +126,6 @@ Subclasses may define their own parameters and internal state.</p>
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="Run.html">Run</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -172,7 +144,7 @@ Subclasses may define their own parameters and internal state.</p>
     
 
     
-    <h4 class="name" id="run"><span class="type-signature">(abstract) </span>run<span class="signature">()</span><span class="type-signature"> &rarr; {any|<a href="Run.html">Run</a>}</span></h4>
+    <h4 class="name" id="eval"><span class="type-signature"></span>eval<span class="signature">(item, &hellip;args)</span><span class="type-signature"></span></h4>
     
 
     
@@ -180,7 +152,7 @@ Subclasses may define their own parameters and internal state.</p>
 
 
 <div class="description">
-    <p>Executes the algorithm implemented by the subclass.</p>
+    <p>calculates</p>
 </div>
 
 
@@ -189,6 +161,98 @@ Subclasses may define their own parameters and internal state.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -242,62 +306,8 @@ Subclasses may define their own parameters and internal state.</p>
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        <p>If the subclass does not override this method.</p>
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">Error</span>
 
 
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A computed result OR this instance.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">any</span>
-|
-
-<span class="param-type"><a href="Run.html">Run</a></span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 

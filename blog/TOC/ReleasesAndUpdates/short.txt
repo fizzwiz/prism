@@ -1,4 +1,4 @@
-🔺 @fizzwiz/prism v0.0.0-dev.2 is there!
+🔺 @fizzwiz/prism v0.0.0-dev.3 is here!
 
 A small but important update to @fizzwiz/prism! 🎉
 We’ve removed the dependency on @fizzwiz/sorted to avoid circular dependencies, since the next version of @fizzwiz/sorted will depend on @fizzwiz/prism.

@@ -26,7 +26,6 @@
   },
   "scripts": {
     "test": "mocha --recursive ./src/test",
-    "test:watch": "mocha --watch ./src/test",
     "doc": "jsdoc -r -c ./jsdoc.json",
     "build": "webpack --mode production"
   },
@@ -42,15 +41,14 @@
     "@babel/cli": "^7.22.5",
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
-    "@fizzwiz/sorted": "github:fizzwiz/sorted",
     "assert": "2.0.0",
     "babel-loader": "^9.1.2",
     "mocha": "^10.2.0",
-    "path": "^0.12.7",
     "webpack": "^5.88.0",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@fizzwiz/fluent": "^0.0.0-dev.12"
+    "@fizzwiz/fluent": "github:fizzwiz/fluent",
+    "@fizzwiz/sorted": "github:fizzwiz/sorted"
   }
 }

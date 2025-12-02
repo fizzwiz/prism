@@ -1,29 +1,44 @@
+import { EventEmitter } from "events";
+
 /**
  * Abstract base class for all locally executable processes.
  *
- * A `Run` encapsulates a focused, executable idea capable of solving
- * a category of problems through a defined algorithm.
+ * A `Run` instance represents a focused executable unit of logic.
+ * Subclasses must implement the `run()` method, which performs the
+ * main computation.
  *
- * Subclasses must implement the `run()` method, which represents
- * the core computation. The execution can:
- * - Return a result directly (e.g., a value, object, or structure), or
- * - Mutate internal state and return `this` for fluent chaining.
+ * Execution may:
+ *  - Return a computed value
+ *  - Return `this` (for fluent chaining)
+ *  - Emit lifecycle or custom events
  *
- * @abstract
+ * Events typically used:
+ *  - "start"      → invoked just before computation
+ *  - "step"       → invoked periodically during execution
+ *  - "end"        → invoked after successful completion
+ *
+ * This base class enforces the presence of `run()` in subclasses.
  */
-export class Run {
+export class Run extends EventEmitter {
     /**
-     * Executes the computation defined by the subclass.
-     * This method must be overridden in all concrete implementations.
+     * Creates a new Run instance.
+     * Subclasses may define their own parameters and internal state.
+     */
+    constructor() {
+        super();
+    }
+
+    /**
+     * Executes the algorithm implemented by the subclass.
      *
      * @abstract
-     * @returns {Run|any} Either:
-     *   - A computed result, or
-     *   - `this` for fluent chaining if the computation mutates state.
-     * @throws {Error} If not implemented in subclass.
+     * @returns {any|Run} A computed result OR this instance.
+     * @throws {Error} If the subclass does not override this method.
      */
     run() {
-        throw new Error("Abstract method 'run()' must be implemented by subclasses.");
+        throw new Error(
+            `Abstract method "run()" must be implemented in ${this.constructor.name}.`
+        );
     }
 
 }

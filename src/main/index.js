@@ -1,9 +1,9 @@
 import { Run } from './core/Run.js';
 import { Search } from './core/Search.js';
-import { AsyncSearch } from './core/AsyncSearch.js';
-// import { PopRace } from './run/PopRace.js';
+import { AsyncSearch } from './search/AsyncSearch.js';
+import { PopRace } from './run/PopRace.js';
 
-export { Run, Search, AsyncSearch };
+export { Run, Search, PopRace, AsyncSearch };
 
 // ─── Core Module ─────────────────────────────────────────────
 /**

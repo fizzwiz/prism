@@ -22,6 +22,7 @@ import { AsyncEach } from "@fizzwiz/fluent";
  *
  * Candidate transformation and iteration termination are fluent,
  * leveraging methods from {@link AsyncEach}.
+ * 
  */
 export class AsyncSearch extends AsyncEach {
 

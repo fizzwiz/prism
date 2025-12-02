@@ -28,40 +28,15 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>PopRace<span class="signature">(pop, popSize, generator, partitioner, comparator)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>PopRace<span class="signature">(pop0, popSize, generator, partitioner, itemComparator, maxSteps<span class="signature-attributes">opt</span>, maxChronology<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>A Generalized Selection Framework Inspired by the Needleman-Wunsch Algorithm</p>
-<p>This class abstracts the core concept of the Needleman-Wunsch algorithm to provide a
-generalized approach for transforming exponential computational problems into linear ones.</p>
-<h2>Concept Overview:</h2>
-<p>The Needleman-Wunsch algorithm can be interpreted as a <strong>selection process</strong> involving multiple
-<strong>populations</strong>, each corresponding to a cell in the matrix.
-The algorithm progresses column by column, with each column producing the next through the following steps:</p>
-<ol>
-<li>Extracting items from each population.</li>
-<li>Expanding each item into multiple new candidates.</li>
-<li>Distributing these new candidates among the populations in the next column.</li>
-</ol>
-<p>Each population (a matrix cell) receives items from the previous column, evaluates them,
-and retains only the <strong>top n candidates</strong> for further processing. This selection mechanism
-enables the reduction of <strong>r^c</strong> potential candidates to just <strong>r * c</strong>, where:</p>
-<ul>
-<li><strong>r</strong> is the number of rows (populations).</li>
-<li><strong>c</strong> is the number of columns (iterations/set).</li>
-</ul>
-<p>While the original Needleman-Wunsch algorithm retains only one candidate per population,<br>
-this framework allows each population to retain multiple candidates without increasing<br>
-the overall complexity of the algorithm.</p>
-<h2>Key Components:</h2>
-<p>To implement this <strong>race of populations</strong>, the following elements are required:</p>
-<ul>
-<li><strong>Initial Population:</strong> The starting set of candidates.</li>
-<li><strong>Generation Function:</strong> Expands each candidate into multiple new ones.</li>
-<li><strong>Partition Function:</strong> Distributes the newly generated candidates among the next populations.</li>
-<li><strong>Comparation Function:</strong> Compares candidates within each population to select the best ones.</li>
-</ul>
-<p>By leveraging this structured selection process, complex combinatorial problems can be
-efficiently approximated or optimized while avoiding exponential growth.</p></div>
+            <div class="class-description"><p>A Generalized Selection Framework Inspired by the Needleman-Wunsch Algorithm.</p>
+<p>PopRace implements a <strong>selection process</strong> over populations (partitions), iteratively
+expanding candidates, distributing them to partitions, and selecting the best ones.</p>
+<p>It reduces the potential combinatorial explosion by retaining only the top N items
+per partition at each step and optionally keeping a limited chronology of previous steps.</p>
+<p>The <code>generator</code> and <code>partitioner</code> functions can be swapped dynamically, e.g., via event listeners,
+allowing the race to adapt as it progresses.</p></div>
         
     
 </header>
@@ -76,7 +51,7 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
     
 
     
-    <h4 class="name" id="PopRace"><span class="type-signature"></span>new PopRace<span class="signature">(pop, popSize, generator, partitioner, comparator)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PopRace"><span class="type-signature"></span>new PopRace<span class="signature">(pop0, popSize, generator, partitioner, itemComparator, maxSteps<span class="signature-attributes">opt</span>, maxChronology<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -84,7 +59,7 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
 
 
 <div class="description">
-    <p>Constructs a PopRace instance with the given parameters.</p>
+    <p>Constructs a PopRace instance.</p>
 </div>
 
 
@@ -108,7 +83,11 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -120,7 +99,7 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
 
         <tr>
             
-                <td class="name"><code>pop</code></td>
+                <td class="name"><code>pop0</code></td>
             
 
             <td class="type">
@@ -133,10 +112,22 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>The initial population of items.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Initial population of items.</p></td>
         </tr>
 
     
@@ -149,17 +140,29 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">number</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>Maximal number of items each generated population con hold.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum items per partition.</p></td>
         </tr>
 
     
@@ -179,10 +182,22 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>Function that generates new items from a given item.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Generates new candidates from an item.</p></td>
         </tr>
 
     
@@ -202,17 +217,29 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>Function that assigns each item to a specific partition.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Maps an item to a partition key.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>comparator</code></td>
+                <td class="name"><code>itemComparator</code></td>
             
 
             <td class="type">
@@ -225,10 +252,100 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>Function that compares items in descending order.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Sort function for items (descending order recommended).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxSteps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    Infinity
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum number of evolutionary steps.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxChronology</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>Maximum number of past populations to keep in chronology.</p></td>
         </tr>
 
     
@@ -293,6 +410,11 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const race = new PopRace(  initialPopulation,  16,  item => generateCandidates(item),  item => partitionKey(item),  (a, b) => b.score - a.score);race.on('start', (phase, race, ...args) => { ... });race.on('end', (phase, race, ...args) => { ... });race.run();</code></pre>
+
+
 
     
     </div>
@@ -321,13 +443,13 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
 
         
             
-<h4 class="name" id="_ranking"><span class="type-signature"></span>_ranking<span class="type-signature"></span></h4>
+<h4 class="name" id="PHASE"><span class="type-signature">(readonly) </span>PHASE<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>all the selected item, during the race, sorted by value</p>
+    <p>Enum representing the phases of the race.</p>
 </div>
 
 
@@ -378,14 +500,81 @@ efficiently approximated or optimized while avoiding exponential growth.</p></di
 
         
             
-<h4 class="name" id="comparator"><span class="type-signature"></span>comparator<span class="type-signature"></span></h4>
+<h4 class="name" id="chronology"><span class="type-signature"></span>chronology<span class="type-signature"> :Classifier</span></h4>
 
 
 
 
 <div class="description">
-    <p>Function that compares two items to determine their ranking.
-Used for selecting the best candidates within each partition.</p>
+    <p>Tracks the best populations over time.
+Map: stepIndex → Classifier containing top items at that step.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Classifier</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="currentPartition"><span class="type-signature"></span>currentPartition<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Currently processed node</p>
 </div>
 
 
@@ -436,308 +625,27 @@ Used for selecting the best candidates within each partition.</p>
 
         
             
-<h4 class="name" id="generator"><span class="type-signature"></span>generator<span class="type-signature"></span></h4>
+<h4 class="name" id="stopped"><span class="type-signature"></span>stopped<span class="type-signature"> :boolean</span></h4>
 
 
 
 
 <div class="description">
-    <p>Function f(item, iStep) that generates new items from a given item at the given step of this race.</p>
+    <p>Indicates whether the race execution is stopped.
+Can be set externally or via event listeners to interrupt the run.</p>
 </div>
 
 
 
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-<h4 class="name" id="map"><span class="type-signature"></span>map<span class="type-signature"></span></h4>
+<span class="param-type">boolean</span>
 
 
-
-
-<div class="description">
-    <p>A mapping of partitions (as returned by the partitioner) to their respective populations.
-Each partition maintains a sorted collection of items.</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="partitioner"><span class="type-signature"></span>partitioner<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>Function f(item, iStep) -&gt; key that assigns each item to a specific partition.
-Items within the same partition compete for selection.</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="pop"><span class="type-signature"></span>pop<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>The initial population, represented as an iterable collection of items. Any number of items
-is allowed, even beyond the <code>popSize</code> property.</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="popSize"><span class="type-signature"></span>popSize<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>For each generated population, only the first <code>popSize</code> items are further propagated.</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="ranking"><span class="type-signature"></span>ranking<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>Retrieves the final ranking of selected items from each step of the race.</p>
-<ul>
-<li>The items are sorted according to <code>this._comparator</code>.</li>
-<li>Only the first <code>this._popSize</code> are maintained.</li>
-</ul>
-</div>
-
-
+        </li>
+    </ul>
 
 
 
@@ -795,7 +703,7 @@ is allowed, even beyond the <code>popSize</code> property.</p>
     
 
     
-    <h4 class="name" id="run"><span class="type-signature"></span>run<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="run"><span class="type-signature"></span>run<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="PopRace.html">PopRace</a>}</span></h4>
     
 
     
@@ -803,8 +711,9 @@ is allowed, even beyond the <code>popSize</code> property.</p>
 
 
 <div class="description">
-    <p>Executes this Race.
-At the end of execution, <code>this._map</code> will contain the final winning populations.</p>
+    <p>Executes the race.
+At the end, <code>this.chronology</code> contains the latest <code>maxChronology</code> steps.</p>
+<p><strong>Stop control:</strong> Set <code>race.stopped = true</code> externally or inside an event listener to halt execution.</p>
 </div>
 
 
@@ -858,266 +767,12 @@ At the end of execution, <code>this._map</code> will contain the final winning p
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".ofChoices"><span class="type-signature">(static) </span>ofChoices<span class="signature">(options, filter, value, popSize<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="PopRace.html">PopRace</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>PopRace for exploring and ranking sequences of choices from a set of options.</p>
-<p>This method builds paths by selecting options and evaluates them using the provided <code>value</code> function.
-The <code>filter</code> controls which paths are valid (e.g., to avoid repeats).
-Add your own filters to restrict to sorted paths (combinations) or specific rule sets.
-It can be useful to use indices pointing to options rather than source options themselves.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Iterable.&lt;(boolean|number|string)></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The available choices to construct paths from.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>A predicate (path) =&gt; boolean, used to prune paths.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>A scoring function (path) =&gt; number, evaluating path quality.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>popSize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    16
-                
-                </td>
-            
-
-            <td class="description last"><p>Number of top paths to retain at each step.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
+<h5>Fires:</h5>
+<ul>
+    <li>PopRace#start Emitted at the start of each PHASE (RACE | STEP | POP).  - Arguments: (phase, race, ...phaseArgs)event:</li>
+
+    <li>PopRace#end   Emitted at the end of each PHASE (RACE | STEP | POP).  - Arguments: (phase, race, ...phaseArgs)event:</li>
+</ul>
 
 
 
@@ -1133,7 +788,7 @@ It can be useful to use indices pointing to options rather than source options t
 
         
 <div class="param-desc">
-    <p>A configured PopRace instance for path exploration.</p>
+    <p>Returns itself for chaining.</p>
 </div>
 
 
@@ -1157,227 +812,6 @@ It can be useful to use indices pointing to options rather than source options t
 
 
         
-            
-
-    
-
-    
-    <h4 class="name" id=".ofMatches"><span class="type-signature">(static) </span>ofMatches<span class="signature">(nrows, ncols, value, popSize)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>PopRace for exploring and ranking sequences of matches [r, c]</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>nrows</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>ncols</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>popSize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    16
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     
 
     
@@ -1393,13 +827,13 @@ It can be useful to use indices pointing to options rather than source options t
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-core.html">core</a></li><li><a href="module-run.html">run</a></li><li><a href="module-search.html">search</a></li></ul><h3>Classes</h3><ul><li><a href="AsyncSearch.html">AsyncSearch</a></li><li><a href="PopRace.html">PopRace</a></li><li><a href="Run.html">Run</a></li><li><a href="Search.html">Search</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-core.html">core</a></li><li><a href="module-run.html">run</a></li><li><a href="module-search.html">search</a></li></ul><h3>Classes</h3><ul><li><a href="AsyncSearch.html">AsyncSearch</a></li><li><a href="BayesEvaluator.html">BayesEvaluator</a></li><li><a href="Evaluator.html">Evaluator</a></li><li><a href="GaussianModel.html">GaussianModel</a></li><li><a href="Interval.html">Interval</a></li><li><a href="MixtureEvaluator.html">MixtureEvaluator</a></li><li><a href="Model.html">Model</a></li><li><a href="PDistribution.html">PDistribution</a></li><li><a href="Partitioner.html">Partitioner</a></li><li><a href="PointModel.html">PointModel</a></li><li><a href="PopRace.html">PopRace</a></li><li><a href="RaceEvaluator.html">RaceEvaluator</a></li><li><a href="Rationale.html">Rationale</a></li><li><a href="Run.html">Run</a></li><li><a href="SampleGenerator.html">SampleGenerator</a></li><li><a href="Search.html">Search</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Oct 24 2025 17:58:43 GMT+0200 (Ora legale dell’Europa centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Nov 20 2025 12:56:17 GMT+0100 (Ora standard dell’Europa centrale)
 </footer>
 
 <script> prettyPrint(); </script>
